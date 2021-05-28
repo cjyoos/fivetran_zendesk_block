@@ -4,7 +4,7 @@
   elements:
   - title: Total Tickets
     name: Total Tickets
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -49,7 +49,7 @@
     height: 3
   - title: Noisiest Customers
     name: Noisiest Customers
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_column
     fields:
@@ -95,7 +95,7 @@
     height: 7
   - title: Tickets by Day and Time
     name: Tickets by Day and Time
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: table
     fields:
@@ -170,7 +170,7 @@
     height: 6
   - title: Top Agents by Tickets Solved
     name: Top Agents by Tickets Solved
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_bar
     fields:
@@ -214,7 +214,7 @@
     height: 11
   - title: Agent Ticket Performance
     name: Agent Ticket Performance
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_column
     fields:
@@ -290,7 +290,7 @@
     height: 11
   - title: Tickets in 30 Days
     name: Tickets in 30 Days
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -337,7 +337,7 @@
     height: 3
   - title: Tickets in 90 Days
     name: Tickets in 90 Days
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -384,7 +384,7 @@
     height: 3
   - title: Averages
     name: Averages
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_column
     fields:
@@ -469,7 +469,7 @@
     height: 6
   - title: Tickets Over Time
     name: Tickets Over Time
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_column
     fields:
@@ -534,7 +534,7 @@
     height: 7
   - title: Stale Tickets
     name: Stale Tickets
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: table
     fields:
@@ -607,7 +607,7 @@
     height: 6
   - title: Not Responded Open Tickets
     name: Not Responded Open Tickets
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -673,10 +673,10 @@
   - name: Ticket Created
     title: Ticket Created
     type: field_filter
-    default_value: '2016'
+    default_value: 'this year'
     allow_multiple_values: true
     required: false
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     listens_to_filters: []
     field: ticket.created_date
@@ -687,7 +687,7 @@
   elements:
   - title: Tickets in 90 Days
     name: Tickets in 90 Days
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -736,7 +736,7 @@
     height: 3
   - title: Averages
     name: Averages
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_column
     fields:
@@ -822,7 +822,7 @@
     height: 6
   - title: Total Tickets
     name: Total Tickets
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -869,7 +869,7 @@
     height: 3
   - title: Not Responded Open Tickets
     name: Not Responded Open Tickets
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -928,7 +928,7 @@
     height: 3
   - title: Tickets in 30 Days
     name: Tickets in 30 Days
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -977,7 +977,7 @@
     height: 3
   - title: Avg Minutes to First Response
     name: Avg Minutes to First Response
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_bar
     fields:
@@ -1101,7 +1101,7 @@
     height: 6
   - title: Tickets Over Time
     name: Tickets Over Time
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_column
     fields:
@@ -1167,7 +1167,7 @@
     height: 7
   - title: Stale Tickets
     name: Stale Tickets
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: table
     fields:
@@ -1242,7 +1242,7 @@
     height: 7
   - title: Avg Days to Solve
     name: Avg Days to Solve
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_bar
     fields:
@@ -1371,17 +1371,17 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     listens_to_filters: []
     field: assignee.name
   - name: Ticket Created
     title: Ticket Created
     type: field_filter
-    default_value: '2016'
+    default_value: 'this year'
     allow_multiple_values: true
     required: false
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     listens_to_filters: []
     field: ticket.created_date
@@ -1392,7 +1392,7 @@
   elements:
   - title: Customer
     name: Customer
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -1441,7 +1441,7 @@
     height: 2
   - title: Last Updated
     name: Last Updated
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -1498,7 +1498,7 @@
     height: 4
   - title: Assigned To
     name: Assigned To
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -1533,7 +1533,7 @@
     height: 4
   - title: Requester
     name: Requester
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: looker_single_record
     fields:
@@ -1581,7 +1581,7 @@
     height: 4
   - title: Status
     name: Status
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -1630,7 +1630,7 @@
     height: 4
   - title: Open in Zendesk
     name: Open in Zendesk
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: single_value
     fields:
@@ -1677,7 +1677,7 @@
     height: 2
   - title: Comments
     name: Comments
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     type: table
     fields:
@@ -1736,7 +1736,7 @@
     default_value: ''
     allow_multiple_values: true
     required: false
-    model: zendesk_block
+    model: zendesk_block_snowflake
     explore: ticket
     listens_to_filters: []
     field: ticket.id

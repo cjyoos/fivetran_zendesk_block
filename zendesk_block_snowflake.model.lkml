@@ -1,7 +1,6 @@
-connection: "fivetran_looker_blocks_demo"
+connection: "snowflake_el_fivetran"
 
-include: "*_zendesk_block.view"
-include: "*_zendesk_variables.view"
+include: "/views/*.view"
 include: "*.dashboard"
 
 explore: ticket {
@@ -25,14 +24,20 @@ explore: ticket {
     relationship: many_to_one
   }
 
-  join: organization_member {
-    sql_on: ${requester.id} = ${organization_member.user_id} ;;
+  # join: organization_member {. ##BLocked in Fivetran?
+  #   sql_on: ${requester.id} = ${organization_member.user_id} ;;
+  #   relationship: many_to_one
+  # }
+
+  join: organization {
+    sql_on: ${ticket.organization_id} = ${organization.id} ;;
     relationship: many_to_one
   }
 
-  join: organization {
-    sql_on: ${organization_member.organization_id} = ${organization.id} ;;
-    relationship: many_to_one
+  join: organization_tag {
+    view_label: "Organization"
+    sql_on: ${organization_id} = ${organization_tag.organization_id} ;;
+    relationship: one_to_many
   }
 
   join: brand {

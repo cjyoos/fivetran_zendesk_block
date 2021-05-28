@@ -174,25 +174,31 @@ view: ticket {
     sql: ${status} = ${_TICKET_STATUS_CLOSED} ;;
   }
 
-  dimension: days_to_solve {
-    type: number
-    sql: 1.00 * DATE_DIFF(${ticket_history_facts.solved_date}, ${created_date}, DAY) ;;
+  dimension_group: to_solve {
+    type: duration
+    intervals: [day, hour, minute]
+    sql_start: ${created_raw} ;;
+    sql_end: ${ticket_history_facts.solved_date} ;;
+    # sql: 1.00 * DATE_DIFF(${ticket_history_facts.solved_date}, ${created_date}, DAY) ;;
   }
 
-  dimension: days_to_first_response {
-    type: number
-    sql: 1.00 * DATE_DIFF(${ticket_history_facts.first_response_date}, ${created_date}, DAY) ;;
+  dimension_group: to_first_response {
+    type: duration
+    intervals: [day, hour, minute]
+    sql_start: ${created_raw} ;;
+    sql_end: ${ticket_history_facts.first_response_date} ;;
+    # sql: 1.00 * DATE_DIFF(${ticket_history_facts.first_response_date}, ${created_date}, DAY) ;;
   }
 
-  dimension: minutes_to_first_response {
-    type: number
-    sql: 1.00 * DATETIME_DIFF(EXTRACT(DATETIME FROM ${ticket_history_facts.first_response_raw}), EXTRACT(DATETIME FROM ${created_raw}), MINUTE) ;;
-  }
+  # dimension: minutes_to_first_response {
+  #   type: number
+  #   sql: 1.00 * DATETIME_DIFF(EXTRACT(DATETIME FROM ${ticket_history_facts.first_response_raw}), EXTRACT(DATETIME FROM ${created_raw}), MINUTE) ;;
+  # }
 
-  dimension: hours_to_solve {
-    type: number
-    sql: 1.00 * DATETIME_DIFF(${ticket_history_facts.solved_raw}, ${created_raw}, HOUR) ;;
-  }
+  # dimension: hours_to_solve {
+  #   type: number
+  #   sql: 1.00 * DATETIME_DIFF(${ticket_history_facts.solved_raw}, ${created_raw}, HOUR) ;;
+  # }
 
   dimension: is_responded_to {
     type: yesno
@@ -201,7 +207,7 @@ view: ticket {
 
   dimension: days_since_updated {
     type: number
-    sql: 1.00 * DATE_DIFF(${_CURRENT_DATE}, ${last_updated_date}, DAY)  ;;
+    sql: 1.00 * DATEDIFF(Day,${last_updated_date},${_CURRENT_DATE})  ;;
     html: {% if value > 60 %}
             <div style="color: white; background-color: darkred; font-size:100%; text-align:center">{{ rendered_value }}</div>
           {% else %}
@@ -467,7 +473,7 @@ view: assignee {
   # ----- agent comparison fields -----
   filter: agent_select {
     view_label: "Agent Comparisons"
-    suggest_dimension: user.name
+    suggest_dimension: name
   }
 
   dimension: agent_comparitor {
