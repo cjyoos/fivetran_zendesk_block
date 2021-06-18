@@ -1,6 +1,7 @@
 view: zendesk_sla_policies {
   sql_table_name: "ANALYTICS"."ZENDESK_SLA_POLICIES"
     ;;
+  drill_fields: [ticket_id, sla_policy_name, metric]
 
   dimension: in_business_hours {
     type: yesno
@@ -73,6 +74,31 @@ view: zendesk_sla_policies {
   dimension: ticket_id {
     type: number
     sql: ${TABLE}."TICKET_ID" ;;
+    link: {
+      label: "See Ticket Dashboard"
+      url: "dashboards/zendesk_block_snowflake::zendesk_ticket?Ticket={{ value }}"
+    }
+    link: {
+      label: "Open in Zendesk"
+      url: "https://cytracom.zendesk.com/agent/tickets/{{ value }}"
+      icon_url: "https://d1eipm3vz40hy0.cloudfront.net/images/logos/zendesk-favicon.ico"
+    }
+  }
+
+  measure: count_achieved {
+    type: count
+    filters: [is_sla_breach: "no"]
+  }
+
+  measure: count_breached {
+    type: count
+    filters: [is_sla_breach: "yes"]
+  }
+
+  measure: percent_achieved {
+    type: number
+    sql: ${count_achieved}/nullif(${count},0) ;;
+    value_format_name: percent_1
   }
 
   measure: count {

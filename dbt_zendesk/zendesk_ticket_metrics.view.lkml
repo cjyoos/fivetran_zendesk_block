@@ -705,10 +705,14 @@ view: zendesk_ticket_metrics {
     type: number
     sql: ${TABLE}."TICKET_ID" ;;
     link: {
-      label: "Zendesk Ticket"
+      label: "Open in Zendesk"
       url: "https://cytracom.zendesk.com/agent/tickets/{{ value }}"
       icon_url: "https://d1eipm3vz40hy0.cloudfront.net/images/logos/zendesk-favicon.ico"
   }
+    link: {
+      label: "See Ticket Dashboard"
+      url: "dashboards/zendesk_block_snowflake::zendesk_ticket?Ticket={{ value }}"
+    }
   }
 
   dimension_group: ticket_last_comment {
